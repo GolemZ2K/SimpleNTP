@@ -19,6 +19,7 @@ import time, datetime, os, sys
 import argparse
 import ipaddress
 import socket
+import threading
 
 ip  = socket.gethostbyname(socket.gethostname())
 net = ipaddress.IPv4Network(ip + '/24', False)
@@ -30,7 +31,7 @@ s = socket.socket(socket.AF_INET, socket.SOCK_DGRAM)
 s.setsockopt(socket.SOL_SOCKET, socket.SO_BROADCAST, 1)
 s.setsockopt(socket.SOL_SOCKET, socket.SO_REUSEADDR, 1)
 localtimezone = -time.timezone//3600
-print('timezone:', localtimezone)
+print('Local timezone:', localtimezone)
 isLinux = 'linux' in sys.platform
 
 def procCmdline():
@@ -40,7 +41,9 @@ def procCmdline():
     parser.add_argument('-i', type=int, default=5, metavar='interval', help='interval of broadcasting (default: 5 seconds)')
     args = parser.parse_args()
     args.i = args.i if args.i >= 1 else 5
+    return args
 
+def run(args):
     if args.s:
         server(args)
     else:
@@ -123,5 +126,17 @@ def client(args):
         except:
             traceback.print_exc()
 
+def main():
+    args = procCmdline()
+    t = threading.Thread(target=run, args=(args,))
+    t.setDaemon(True)
+    t.start()
+    while True:
+        try:
+            time.sleep(1)
+        except (KeyboardInterrupt, SystemExit):
+            print('')
+            return
+
 if __name__ == '__main__':
-    procCmdline()
+    main()
