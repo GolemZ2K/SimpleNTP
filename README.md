@@ -4,6 +4,7 @@ can run in Windows or Linux or MacOS
 one pc run as server, and others as client
 
 run as server: python3 sntp.py -s
+
 run as client: python3 sntp.py
 
 
@@ -13,4 +14,5 @@ run as client: python3 sntp.py
 未使用第三方库，兼容Windows和Linux和MacOS
 
 服务端运行：python3 sntp.py -s
+
 客户端运行：python3 sntp.py
