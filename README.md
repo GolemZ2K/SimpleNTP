@@ -1,6 +1,8 @@
 # SimpleNTP
 Simple NTP，to synchronization time in a lan
+
 can run in Windows or Linux or MacOS
+
 one pc run as server, and others as client
 
 run as server: python3 sntp.py -s
@@ -10,7 +12,9 @@ run as client: python3 sntp.py
 
 
 一个简单的时间同步工具，同步局域网内机器的时间，集服务器和客户端功能于一体，
+
 一台机器运行服务端，其他机器运行客户端
+
 未使用第三方库，兼容Windows和Linux和MacOS
 
 服务端运行：python3 sntp.py -s
