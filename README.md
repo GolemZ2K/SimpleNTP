@@ -1,5 +1,5 @@
 # SimpleNTP
-Simple NTP，to synchronization time in a lan
+Simple NTP，to synchronization time in lan
 
 can run in Windows or Linux or MacOS
 
